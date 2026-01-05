@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+
+    .sidebar {
+      background: radial-gradient(circle 300px at left, #dfbeff, #ddf4ff);
+      color: #5137ff;
+      min-height: 100vh;
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-image i {
+      color: #fff;
+    }
+
+    .edit-icon {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      color: #fff;
+      display: none;
+    }
+
+    .profile-image:hover .edit-icon {
+      display: block;
+    }
+
+    .logout-button {
+      background-color: #5137ff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .logout-button:hover {
+      background-color: #705bff;
+      color: #fff;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Navbar for Mobile -->
+  <nav class="navbar navbar-light bg-light d-md-none">
+    <div class="container-fluid">
+      <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+        <i class="fas fa-bars"></i> Menu
+      </button>
+      <span class="navbar-brand mb-0 h1">My Account</span>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar (Offcanvas for mobile, visible for desktop) -->
+      <div class="col-md-3 col-lg-2 sidebar p-3 d-none d-md-block">
+        <h3>Account</h3>
+        <hr>
+        <h5>
+          <a href="#" class="d-block bg-primary text-white py-2 px-3 rounded-pill text-decoration-none">Overview</a>
+        </h5>
+        <hr>
+        <ul class="list-unstyled">
+          <li><a href="cart.html" class="text-decoration-none text-primary d-block py-1">Orders & Returns</a></li>
+          <li><a href="wishlist.html" class="text-decoration-none text-primary d-block py-1">Wishlist</a></li>
+        </ul>
+        <hr>
+        <ul class="list-unstyled">
+          <li><a href="profile.html" class="d-block text-decoration-none py-1 text-dark">Profile</a></li>
+          <li><a href="card.html" class="d-block text-decoration-none py-1 text-dark">Saved Cards</a></li>
+          <li><a href="upi.html" class="d-block text-decoration-none py-1 text-dark">Saved UPI</a></li>
+          <li><a href="delete.html" class="d-block text-decoration-none py-1 text-dark">Delete Account</a></li>
+        </ul>
+        <hr>
+        <h5>Legal</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="d-block py-1 text-dark">Terms of Use</a></li>
+          <li><a href="#" class="d-block py-1 text-dark">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Offcanvas Sidebar (Mobile) -->
+      <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="sidebarMenu">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">Account Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <h5>
+            <a href="#" class="d-block bg-primary text-white py-2 px-3 rounded-pill text-decoration-none">Overview</a>
+          </h5>
+          <hr>
+          <ul class="list-unstyled">
+            <li><a href="cart.html" class="text-decoration-none text-primary d-block py-1">Orders & Returns</a></li>
+          </ul>
+          <hr>
+          <ul class="list-unstyled">
+            <li><a href="profile.html" class="d-block py-1 text-dark">Profile</a></li>
+            <li><a href="card.html" class="d-block py-1 text-dark">Saved Cards</a></li>
+            <li><a href="upi.html" class="d-block py-1 text-dark">Saved UPI</a></li>
+            <li><a href="delete.html" class="d-block py-1 text-dark">Delete Account</a></li>
+          </ul>
+          <hr>
+          <h5>Legal</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="d-block py-1 text-dark">Terms of Use</a></li>
+            <li><a href="#" class="d-block py-1 text-dark">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 col-lg-10 p-4">
+        <div class="text-center mb-4">
+          <div class="profile-image" id="profileImageContainer">
+            <i class="fas fa-user"></i>
+            <input type="file" id="profileImageInput" accept="image/*" class="d-none">
+            <i class="fas fa-pencil-alt edit-icon" id="editIcon"></i>
+          </div>
+          <a href="profile.html" class="btn btn-primary mt-3">Edit Profile</a>
+        </div>
+
+        <!-- Account Sections -->
+        <div class="row g-3">
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-shopping-cart text-primary fs-3 mb-2"></i>
+              <h5><a href="cart.html" class="text-dark text-decoration-none">Orders</a></h5>
+              <p class="small">Check your order status</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-list-ul text-primary fs-3 mb-2"></i>
+              <h5><a href="collection.html" class="text-dark text-decoration-none">Collections & Wishlist</a></h5>
+              <p class="small">All your curated product collections</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-credit-card text-primary fs-3 mb-2"></i>
+              <h5><a href="credit.html" class="text-dark text-decoration-none">Your Credit</a></h5>
+              <p class="small">Manage refunds & gift cards</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fa-solid fa-heart text-primary fs-3 mb-2"></i>
+              <h5><a href="wishlist.html" class="text-dark text-decoration-none">My Wishlist</a></h5>
+              <p class="small">Checkout your wishlist</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-credit-card text-primary fs-3 mb-2"></i>
+              <h5><a href="card.html" class="text-dark text-decoration-none">Saved Cards</a></h5>
+              <p class="small">Save cards for faster checkout</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-mobile-alt text-primary fs-3 mb-2"></i>
+              <h5><a href="upi.html" class="text-dark text-decoration-none">Saved UPI</a></h5>
+              <p class="small">View saved UPI</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-map-marker-alt text-primary fs-3 mb-2"></i>
+              <h5><a href="profile.html" class="text-dark text-decoration-none">Addresses</a></h5>
+              <p class="small">Save address for checkout</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-tag text-primary fs-3 mb-2"></i>
+              <h5><a href="#" class="text-dark text-decoration-none">Coupons</a></h5>
+              <p class="small">Manage coupons for discounts</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="border rounded p-3 text-center">
+              <i class="fas fa-file-alt text-primary fs-3 mb-2"></i>
+              <h5><a href="profile.html" class="text-dark text-decoration-none">Profile Details</a></h5>
+              <p class="small">Change your profile details</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="text-center mt-4">
+          <a href="index.html" class="logout-button" onclick="userLogout()">LOGOUT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minimal Script for Profile Image -->
+  <script>
+
+     // Simulate user logout
+    function userLogout() {
+      // Set login state to false
+      localStorage.setItem('isLoggedIn', 'false');
+      localStorage.removeItem('currentUser');
+
+      // Update UI immediately
+      checkLoginState();
+
+      // Redirect to home page
+      window.location.href = "index.html";
+    }
+
+
+    const profileImageContainer = document.getElementById('profileImageContainer');
+    const profileImageInput = document.getElementById('profileImageInput');
+    const profileImageIcon = profileImageContainer.querySelector('i.fa-user');
+    const editIcon = document.getElementById('editIcon');
+
+    function loadProfileImage() {
+      const savedImage = localStorage.getItem('profileImage');
+      if (savedImage) {
+        profileImageContainer.style.backgroundImage = `url(${savedImage})`;
+        profileImageContainer.style.backgroundSize = 'cover';
+        profileImageContainer.style.backgroundPosition = 'center';
+        profileImageIcon.style.display = 'none';
+      }
+    }
+
+    editIcon.addEventListener('click', () => {
+      const savedImage = localStorage.getItem('profileImage');
+      if (savedImage) {
+        if (confirm('Remove current image or upload new one?')) {
+          profileImageContainer.style.backgroundImage = 'none';
+          profileImageIcon.style.display = 'block';
+          localStorage.removeItem('profileImage');
+        } else {
+          profileImageInput.click();
+        }
+      } else {
+        profileImageInput.click();
+      }
+    });
+
+    profileImageInput.addEventListener('change', function () {
+      const file = profileImageInput.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imageUrl = e.target.result;
+        profileImageContainer.style.backgroundImage = `url(${imageUrl})`;
+        profileImageContainer.style.backgroundSize = 'cover';
+        profileImageContainer.style.backgroundPosition = 'center';
+        profileImageIcon.style.display = 'none';
+        localStorage.setItem('profileImage', imageUrl);
+      };
+      if (file) reader.readAsDataURL(file);
+    });
+
+    window.addEventListener('load', loadProfileImage);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

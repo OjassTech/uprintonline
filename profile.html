@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+
+    .sidebar {
+      background: radial-gradient(circle 300px at left, #dfbeff, #ddf4ff);
+      color: #5137ff;
+      min-height: 100vh;
+    }
+
+    .logout-button {
+      background-color: #5137ff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .logout-button:hover {
+      background-color: #705bff;
+      color: #fff;
+    }
+
+    .profile-content h2 {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .value {
+      color: #777;
+    }
+
+    .edit-input {
+      display: none;
+      width: 60%;
+    }
+
+    .edit-button,
+    .save-button {
+      background: #705bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 20px;
+    }
+
+    .edit-button:hover,
+    .save-button:hover {
+      background: #5137ff;
+    }
+
+    .save-button {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar for Mobile -->
+  <nav class="navbar navbar-light bg-light d-md-none">
+    <div class="container-fluid">
+      <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+        <i class="fas fa-bars"></i> Menu
+      </button>
+      <span class="navbar-brand mb-0 h1">My Profile</span>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar (Desktop) -->
+      <div class="col-md-3 col-lg-2 sidebar p-3 d-none d-md-block">
+        <h3>Account</h3>
+        <hr>
+        <h5>
+          <a href="account.html" class="d-block py-1 text-dark text-decoration-none">Overview</a>
+        </h5>
+        <hr>
+        <ul class="list-unstyled">
+          <li><a href="cart.html" class="text-decoration-none text-primary d-block py-1">Orders & Returns</a></li>
+        </ul>
+        <hr>
+        <ul class="list-unstyled">
+          <li><a href="profile.html" class="d-block bg-primary text-white py-2 px-3 rounded-pill text-decoration-none">Profile</a></li>
+          <li><a href="card.html" class="d-block text-decoration-none py-1 text-dark">Saved Cards</a></li>
+          <li><a href="upi.html" class="d-block text-decoration-none py-1 text-dark">Saved UPI</a></li>
+          <li><a href="delete.html" class="d-block text-decoration-none py-1 text-dark">Delete Account</a></li>
+        </ul>
+        <hr>
+        <h5>Legal</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="d-block py-1 text-dark">Terms of Use</a></li>
+          <li><a href="#" class="d-block py-1 text-dark">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Offcanvas Sidebar (Mobile) -->
+      <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="sidebarMenu">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">Account Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <h5>
+            <a href="account.html" class="d-block py-1 text-dark">Overview</a>
+          </h5>
+          <hr>
+          <ul class="list-unstyled">
+            <li><a href="cart.html" class="text-decoration-none text-primary d-block py-1">Orders & Returns</a></li>
+            <li><a href="wishlist.html" class="text-decoration-none text-primary d-block py-1">Wishlist</a></li>
+          </ul>
+          <hr>
+          <ul class="list-unstyled">
+            <li><a href="profile.html" class="d-block bg-primary text-white py-2 px-3 rounded-pill text-decoration-none">Profile</a></li>
+            <li><a href="card.html" class="d-block py-1 text-dark">Saved Cards</a></li>
+            <li><a href="upi.html" class="d-block py-1 text-dark">Saved UPI</a></li>
+            <li><a href="delete.html" class="d-block py-1 text-dark">Delete Account</a></li>
+          </ul>
+          <hr>
+          <h5>Legal</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="d-block py-1 text-dark">Terms of Use</a></li>
+            <li><a href="#" class="d-block py-1 text-dark">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Profile Content -->
+      <main class="col-md-9 col-lg-10 profile-content flex-grow-1 p-4">
+        <h2>Profile Details</h2>
+        <div class="profile-details">
+          <div class="profile-row">
+            <span class="label fw-medium">Full Name</span>
+            <span class="value" id="fullNameText">- enter name -</span>
+            <input type="text" class="form-control edit-input" id="fullNameInput">
+          </div>
+          <div class="profile-row">
+            <span class="label fw-medium">Mobile Number</span>
+            <span class="value" id="mobileNumberText">- enter number -</span>
+            <input type="text" class="form-control edit-input" id="mobileNumberInput">
+          </div>
+          <div class="profile-row">
+            <span class="label fw-medium">Email ID</span>
+            <span class="value" id="emailText">- not added -</span>
+            <input type="email" class="form-control edit-input" id="emailInput">
+          </div>
+          <div class="profile-row">
+            <span class="label fw-medium">Gender</span>
+            <span class="value" id="genderText">- option -</span>
+            <select class="form-select edit-input" id="genderInput">
+              <option value="FEMALE">FEMALE</option>
+              <option value="MALE">MALE</option>
+              <option value="OTHER">OTHER</option>
+              <option value="PREFER NOT TO SAY" selected>PREFER NOT TO SAY</option>
+            </select>
+          </div>
+          <div class="profile-row">
+            <span class="label fw-medium">Date of Birth</span>
+            <span class="value" id="dobText">- not added -</span>
+            <input type="date" class="form-control edit-input" id="dobInput">
+          </div>
+          <div class="profile-row">
+            <span class="label fw-medium">Location</span>
+            <span class="value" id="locationText">- not added -</span>
+            <input type="text" class="form-control edit-input" id="locationInput">
+          </div>
+          <div class="profile-row">
+            <span class="label fw-medium">Alternate Mobile</span>
+            <span class="value" id="altMobileText">- enter alternate number -</span>
+            <input type="text" class="form-control edit-input" id="altMobileInput">
+          </div>
+          <div class="profile-row">
+            <span class="label fw-medium">Hint Name</span>
+            <span class="value" id="hintNameText">- enter hint name -</span>
+            <input type="text" class="form-control edit-input" id="hintNameInput">
+          </div>
+        </div>
+        <button class="edit-button mt-3" id="editButton">Edit</button>
+        <button class="save-button mt-3" id="saveButton">Save</button>
+      </main>
+    </div>
+  </div>
+
+  <!-- Profile Edit/Save Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const editButton = document.getElementById("editButton");
+      const saveButton = document.getElementById("saveButton");
+      const profileRows = document.querySelectorAll(".profile-row");
+
+      function saveToLocalStorage() {
+        profileRows.forEach(row => {
+          const input = row.querySelector(".edit-input");
+          const valueSpan = row.querySelector(".value");
+          localStorage.setItem(valueSpan.id, input.value);
+        });
+      }
+
+      function loadFromLocalStorage() {
+        profileRows.forEach(row => {
+          const input = row.querySelector(".edit-input");
+          const valueSpan = row.querySelector(".value");
+          const savedValue = localStorage.getItem(valueSpan.id);
+          if (savedValue) {
+            valueSpan.textContent = savedValue;
+            input.value = savedValue;
+          }
+        });
+      }
+
+      loadFromLocalStorage();
+
+      editButton.addEventListener("click", () => {
+        profileRows.forEach(row => {
+          row.querySelector(".value").style.display = "none";
+          row.querySelector(".edit-input").style.display = "block";
+        });
+        editButton.style.display = "none";
+        saveButton.style.display = "block";
+      });
+
+      saveButton.addEventListener("click", () => {
+        profileRows.forEach(row => {
+          const input = row.querySelector(".edit-input");
+          const valueSpan = row.querySelector(".value");
+          valueSpan.textContent = input.value;
+          valueSpan.style.display = "block";
+          input.style.display = "none";
+        });
+        saveToLocalStorage();
+        editButton.style.display = "block";
+        saveButton.style.display = "none";
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

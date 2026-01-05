@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body {
+            background: url("https://merchize.com/wp-content/uploads/2021/06/814-1568x782.jpg") no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 2px solid #5b4dff;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            color: #5b4dff;
+        }
+
+        .form-control {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #5b4dff;
+            border-radius: 0;
+            color: #5b4dff;
+            padding-left: 0;
+        }
+
+        .form-control:focus {
+            background: transparent;
+            box-shadow: none;
+            border-color: #5b4dff;
+            color: #5b4dff;
+        }
+
+        .input-group-text {
+            background: transparent;
+            border: none;
+            color: #5b4dff;
+        }
+
+        .btn-primary {
+            background-color: #5b4dff;
+            border-color: #5b4dff;
+        }
+
+        .btn-primary:hover {
+            background-color: #4a3fd6;
+            border-color: #4a3fd6;
+        }
+
+        .form-control::placeholder {
+            color: #5b4dff;
+            opacity: 0.8;
+        }
+
+        #result {
+            color: #dc3545;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h2 class="text-center mb-4">Login</h2>
+            <form name="Formfill" onsubmit="return handleLogin(event)">
+                <div id="result" class="text-center"></div>
+                
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="Username" name="Username" placeholder="Username">
+                        <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                        <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100 py-2 mb-3">Login</button>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="register.html" class="text-decoration-none">No Account?</a>
+                    <a href="register.html" class="text-decoration-none fw-bold">Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+
+            let Username = document.getElementById("Username").value;
+            let password = document.getElementById("Password").value;
+            let result = document.getElementById("result");
+
+            // Retrieve the registered credentials from localStorage
+            let registeredUsername = localStorage.getItem('registeredUsername');
+            let registeredPassword = localStorage.getItem('registeredPassword');
+
+            if (Username === registeredUsername && password === registeredPassword) {
+                // Set login state in local storage
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('currentUser', Username);
+
+                // Redirect to homepage after login
+                window.location.href = "index.html";
+            } else {
+                if (Username === registeredUsername && password !== registeredPassword) {
+                    document.getElementById("Username").classList.add("is-valid");
+                    document.getElementById("Username").classList.remove("is-invalid");
+                    document.getElementById("Password").classList.add("is-invalid");
+                    document.getElementById("Password").classList.remove("is-valid");
+                    result.innerHTML = "Correct Username but incorrect Password!";
+                } else if (Username !== registeredUsername && password === registeredPassword) {
+                    document.getElementById("Username").classList.add("is-invalid");
+                    document.getElementById("Username").classList.remove("is-valid");
+                    document.getElementById("Password").classList.add("is-valid");
+                    document.getElementById("Password").classList.remove("is-invalid");
+                    result.innerHTML = "Incorrect Username but correct Password!";
+                } else {
+                    document.getElementById("Username").classList.add("is-invalid");
+                    document.getElementById("Username").classList.remove("is-valid");
+                    document.getElementById("Password").classList.add("is-invalid");
+                    document.getElementById("Password").classList.remove("is-valid");
+                    result.innerHTML = "Incorrect information!";
+                }
+            }
+        }
+
+        // Check login state when page loads and redirect if already logged in
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+</body>
+</html>
